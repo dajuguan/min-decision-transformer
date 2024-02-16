@@ -11,7 +11,7 @@ import gym
 import torch
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
-
+sys.path.append("..")
 from decision_transformer.utils import D4RLTrajectoryDataset, evaluate_on_env, get_d4rl_normalized_score
 from decision_transformer.model import DecisionTransformer
 

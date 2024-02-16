@@ -1,5 +1,53 @@
 # Decision Transformer
 
+## Install
+```
+# conda
+conda install -c conda-forge gcc=12.1.0  # for 'GLIBCXX_3.4.30' not found
+conda activate py3.8
+pip install cython==3.0.0a8 # for Exception check on 'c_warning_callback' will always require the GIL to be acquired.
+
+# mujoco_py
+sudo apt install libosmesa6-dev libgl1-mesa-glx libglfw3 patchelf
+wget https://roboti.us/download/mujoco200_linux.zip
+wget https://roboti.us/file/mjkey.txt
+mkdir ~/.mujoco
+unzip mujoco200_linux.zip -d ~/.mujoco/
+cp -r ~/.mujoco/mujoco200_linux ~/.mujoco/mujoco200
+mv mjkey.txt ~/.mujoco/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/root/.mujoco/mujoco200/bin
+pip install mujoco_py==2.0.2.8
+
+# 
+git clone https://github.com/rail-berkeley/d4rl.git
+sed -i "s;dm_control @ git+git://github.com/deepmind/dm_control@master#egg=dm_control;dm_control==0.0.364896371;g" ./d4rl/setup.py
+sed -i "s;mjrl @ git+git://github.com/aravindr93/mjrl@master#egg=mjrl;mjrl @ git+https://github.com/aravindr93/mjrl@master#egg=mjrl;g" ./d4rl/setup.py
+pip install -e d4rl/.
+
+## ignore Warning: Flow/CARLA failed to import
+pip install setuptools==65.5.0 # for gym compatibility
+pip install --user wheel==0.38.0
+
+# min-decision-transformer
+cd min-decision-transformer
+pip install -r requirements.txt
+## download data
+python data/download_d4rl_datasets.py
+python scripts/test.py
+# for cuda compatibility issue (cuda version > 12.1)
+pip uninstall torch torchvision
+pip cache purge
+pip install torch==1.9.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
+#Ref https://discuss.pytorch.org/t/pytorch-for-cuda-12/169447/38
+```
+
+## Test and Train
+```
+cd scripts
+python test.py
+python train.py
+训练200 iters(20000 updates)所需时间: 
+```
 
 ## Overview
 

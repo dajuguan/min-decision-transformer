@@ -3,6 +3,8 @@ import os
 import gym
 import torch
 import numpy as np
+import sys
+sys.path.append("..")
 from decision_transformer.utils import evaluate_on_env, get_d4rl_normalized_score, get_d4rl_dataset_stats
 from decision_transformer.model import DecisionTransformer
 

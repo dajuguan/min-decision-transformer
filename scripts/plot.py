@@ -85,7 +85,7 @@ if __name__ == "__main__":
     parser.add_argument('--smoothing_window', type=int, default=1)
     parser.add_argument("--plot_avg", action="store_true", default=False,
                     help="plot avg of all logs else plot separately")
-    parser.add_argument("--save_fig", action="store_true", default=False,
+    parser.add_argument("--save_fig", action="store_true", default=True,
                     help="save figure if true")
 
     args = parser.parse_args()
